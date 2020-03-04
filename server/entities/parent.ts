@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany, JoinTable } from 'typeorm'
 import { Child } from './child'
 
 @Entity()
@@ -9,14 +9,13 @@ export class Parent {
   @Column()
   name: string
 
-  @Column({
-    nullable: true
-  })
-  description: string
-
   @OneToMany(
     type => Child,
-    child => child.parent
+    child => child.parent,
+    {
+      nullable: true
+    }
   )
+  @JoinTable()
   children: Promise<Child[]>
 }

@@ -9,11 +9,6 @@ export class Child {
   @Column()
   name: string
 
-  @Column({
-    nullable: true
-  })
-  description: string
-
   @ManyToOne(
     type => Parent,
     parent => parent.children
